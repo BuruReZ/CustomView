@@ -3,10 +3,14 @@
     <declare-styleable name="CustomTimeEditView">
         <attr name="edt_width" format="dimension" />
         <attr name="edt_color" format="color" />
+        <attr name="edt_height" format="dimension" />
+        <attr name="edt_text_size" format="dimension" />
     </declare-styleable>
     
     <declare-styleable name="CustomTimeTextView">
         <attr name="txt_width" format="dimension" />
         <attr name="txt_color" format="color" />
+        <attr name="txt_height" format="dimension" />
+        <attr name="txt_text_size" format="dimension" />
     </declare-styleable>
 </resources>

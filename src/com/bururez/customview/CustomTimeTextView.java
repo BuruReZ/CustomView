@@ -1,13 +1,14 @@
 package com.bururez.customview;
 
-import com.bururez.customtimeview.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bururez.customtimeview.R;
 
 public class CustomTimeTextView extends LinearLayout{
 	private static final int MAX_SECONDS = 60;
@@ -46,21 +47,45 @@ public class CustomTimeTextView extends LinearLayout{
 	private void defAttribute(Context context, AttributeSet attrs){
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTimeTextView);
 		final int N = a.getIndexCount();
+		int width = -1;
+		int height = -1;
 		for (int i = 0; i < N; ++i){
 			int attr = a.getIndex(i);
 			switch (attr) {
 			case R.styleable.CustomTimeTextView_txt_width:
-				int width = a.getDimensionPixelSize(attr, 100);
+				width = a.getDimensionPixelSize(attr, 100);
 				width = width / 3;
-				txtHH.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-				txtMM.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-				txtSS.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
+				LayoutParams lpw;
+				if (height == -1)
+					lpw = new LayoutParams(width, LayoutParams.WRAP_CONTENT);
+				else
+					lpw = new LayoutParams(width, height);
+				txtHH.setLayoutParams(lpw);
+				txtMM.setLayoutParams(lpw);
+				txtSS.setLayoutParams(lpw);
 				break;
 			case R.styleable.CustomTimeTextView_txt_color:
 				int color = a.getColor(attr, 0);
 				txtHH.setTextColor(color);
 				txtMM.setTextColor(color);
 				txtSS.setTextColor(color);
+				break;
+			case R.styleable.CustomTimeTextView_txt_height:
+				LayoutParams lph;
+				height = a.getDimensionPixelSize(attr, LayoutParams.WRAP_CONTENT);
+				if (width == -1)
+					lph = new LayoutParams(LayoutParams.WRAP_CONTENT, height);
+				else
+					lph = new LayoutParams(width, height);
+				txtHH.setLayoutParams(lph);
+				txtMM.setLayoutParams(lph);
+				txtSS.setLayoutParams(lph);
+				break;
+			case R.styleable.CustomTimeTextView_txt_text_size:
+				int size = a.getDimensionPixelSize(attr, 15);
+				txtHH.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
+				txtMM.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
+				txtSS.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
 				break;
 			default:
 				break;

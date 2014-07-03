@@ -3,6 +3,7 @@ package com.bururez.customview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -53,21 +54,45 @@ public class CustomTimeEditView extends LinearLayout{
 	private void defAttribute(Context context, AttributeSet attrs){
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTimeEditView);
 		final int N = a.getIndexCount();
+		int width = -1;
+		int height = -1;
 		for (int i = 0; i < N; ++i){
 			int attr = a.getIndex(i);
 			switch (attr) {
 			case R.styleable.CustomTimeEditView_edt_width:
-				int width = a.getDimensionPixelSize(attr, 100);
+				width = a.getDimensionPixelSize(attr, 100);
 				width = width / 3;
-				edtHH.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-				edtMM.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
-				edtSS.setLayoutParams(new LayoutParams(width, LayoutParams.WRAP_CONTENT));
+				LayoutParams lpw;
+				if (height == -1)
+					lpw = new LayoutParams(width, LayoutParams.WRAP_CONTENT);
+				else
+					lpw = new LayoutParams(width, height);
+				edtHH.setLayoutParams(lpw);
+				edtMM.setLayoutParams(lpw);
+				edtSS.setLayoutParams(lpw);
 				break;
 			case R.styleable.CustomTimeEditView_edt_color:
 				int color = a.getColor(attr, 0);
 				edtHH.setTextColor(color);
 				edtMM.setTextColor(color);
 				edtSS.setTextColor(color);
+				break;
+			case R.styleable.CustomTimeEditView_edt_height:
+				LayoutParams lph;
+				if (width == -1)
+					lph = new LayoutParams(LayoutParams.WRAP_CONTENT, height);
+				else
+					lph = new LayoutParams(width, height);
+				height = a.getDimensionPixelSize(attr, LayoutParams.WRAP_CONTENT);
+				edtHH.setLayoutParams(lph);
+				edtMM.setLayoutParams(lph);
+				edtSS.setLayoutParams(lph);
+				break;
+			case R.styleable.CustomTimeEditView_edt_text_size:
+				int size = a.getDimensionPixelSize(attr, 15);
+				edtHH.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
+				edtMM.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
+				edtSS.setTextSize(TypedValue.COMPLEX_UNIT_SP, (float)size);
 				break;
 			default:
 				break;

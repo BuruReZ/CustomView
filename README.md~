@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 CustomView
 ==========
 
@@ -37,6 +36,10 @@ txt_width, txt_color.
 
 In order to use this selector in xml you must set in the main layout this selector:
 xmlns:custom="http://schemas.android.com/apk/res-auto"
+
+Some information about selectors:
+width: take width and is divided by 3 to resize the three EditText or TextView in three equal part
+color: color text for three EditText or TextView
 
 One time it is set in xml you can retrieve in usual manner by
 

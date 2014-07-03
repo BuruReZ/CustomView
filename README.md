@@ -29,10 +29,10 @@ or
 <com.bururez.customview.CustomTimeTextView />
 
 Attributes available now for xml for CustomTimeEditView are:
-edt_width, edt_color.
+edt_width, edt_color, edt_height, edt_text_size.
 
 Attributes available now for xml for CustomTimeTextView are:
-txt_width, txt_color.
+txt_width, txt_color, txt_height, txt_text_size.
 
 In order to use this selector in xml you must set in the main layout this selector:
 xmlns:custom="http://schemas.android.com/apk/res-auto"
@@ -40,6 +40,8 @@ xmlns:custom="http://schemas.android.com/apk/res-auto"
 Some information about selectors:
 width: take width and is divided by 3 to resize the three EditText or TextView in three equal part
 color: color text for three EditText or TextView
+height: take more space for the height of each EditView or TextView
+text_size: use the unit sp to resize the text size of EditView or TextView text.
 
 One time it is set in xml you can retrieve in usual manner by
 
