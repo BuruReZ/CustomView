@@ -1,0 +1,15 @@
+<resources>
+
+    <string name="app_name">CustomTimeView</string>
+    
+    <dimen name="edt_width">60dp</dimen>
+    
+    <string name="edt_hh_hint">hh</string>
+    <string name="edt_mm_hint">mm</string>
+    <string name="edt_ss_hint">ss</string>
+    
+    <string name="txt_inter">:</string>
+    
+    <dimen name="txt_width">35dp</dimen>
+
+</resources>

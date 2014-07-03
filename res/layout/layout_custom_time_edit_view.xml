@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center" >
+    
+	<EditText 
+	    android:id="@+id/hh"
+	    android:layout_width="@dimen/edt_width"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/edt_hh_hint"
+	    android:gravity="center"
+	    android:inputType="number"/>
+	
+	<TextView 
+	    android:id="@+id/interhhmm"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:text="@string/txt_inter"/>
+	
+	<EditText 
+	    android:id="@+id/mm"
+	    android:layout_width="@dimen/edt_width"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/edt_mm_hint"
+	    android:gravity="center"
+	    android:inputType="number"/>
+	
+	<TextView 
+	    android:id="@+id/intermmss"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:gravity="center"
+	    android:text="@string/txt_inter"/>
+	
+	<EditText 
+	    android:id="@+id/ss"
+	    android:layout_width="@dimen/edt_width"
+	    android:layout_height="wrap_content"
+	    android:hint="@string/edt_ss_hint"
+	    android:gravity="center"
+	    android:inputType="number"/>
+	
+</LinearLayout>
