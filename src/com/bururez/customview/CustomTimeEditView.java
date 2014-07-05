@@ -20,6 +20,8 @@ public class CustomTimeEditView extends LinearLayout{
 	EditText edtMM;
 	EditText edtSS;
 	
+	int height;
+	
 	public CustomTimeEditView(Context context){
 		super(context);
 		
@@ -55,7 +57,7 @@ public class CustomTimeEditView extends LinearLayout{
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTimeEditView);
 		final int N = a.getIndexCount();
 		int width = -1;
-		int height = -1;
+		height = -1;
 		for (int i = 0; i < N; ++i){
 			int attr = a.getIndex(i);
 			switch (attr) {
@@ -99,6 +101,19 @@ public class CustomTimeEditView extends LinearLayout{
 			}
 		}
 		a.recycle();
+		/*
+		 * Only if the width isn't set and only if the view is loaded
+		 * adjust the width of the view
+		 */
+		if (width == -1){
+			post(new Runnable() {
+				
+				@Override
+				public void run() {
+					adjustWidthWhenXMLWidthIs0dp();
+				}
+			});
+		}
 	}
 	
 	/**
@@ -213,5 +228,22 @@ public class CustomTimeEditView extends LinearLayout{
 			hh = 0;
 		}
 		return hh;
+	}
+	
+	/**
+	 * When the width = -1 it would be that isn't set into xml declaration.
+	 * get the value on view and divided into thre parts
+	 */
+	private void adjustWidthWhenXMLWidthIs0dp(){
+		int width = getWidth() - 10;
+		width = width / 3;
+		LayoutParams lpw;
+		if (height == -1)
+			lpw = new LayoutParams(width, LayoutParams.WRAP_CONTENT);
+		else
+			lpw = new LayoutParams(width, height);
+		edtHH.setLayoutParams(lpw);
+		edtMM.setLayoutParams(lpw);
+		edtSS.setLayoutParams(lpw);
 	}
 }

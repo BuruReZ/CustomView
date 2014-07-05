@@ -19,10 +19,7 @@ public class CustomTimeTextView extends LinearLayout{
 	TextView txtMM;
 	TextView txtSS;
 	
-	/*
-	 * Only for special case use thi Context variable
-	 */
-	Context context; 
+	int height;
 	
 	public CustomTimeTextView(Context context){
 		super(context);
@@ -48,7 +45,7 @@ public class CustomTimeTextView extends LinearLayout{
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomTimeTextView);
 		final int N = a.getIndexCount();
 		int width = -1;
-		int height = -1;
+		height = -1;
 		for (int i = 0; i < N; ++i){
 			int attr = a.getIndex(i);
 			switch (attr) {
@@ -92,6 +89,19 @@ public class CustomTimeTextView extends LinearLayout{
 			}
 		}
 		a.recycle();
+		/*
+		 * Only if the width isn't set and only if the view is loaded
+		 * adjust the width of the view
+		 */
+		if (width == -1){
+			post(new Runnable() {
+				
+				@Override
+				public void run() {
+					adjustWidthWhenXMLWidthIs0dp();
+				}
+			});
+		}
 	}
 	
 	/**
@@ -217,5 +227,22 @@ public class CustomTimeTextView extends LinearLayout{
 		txtHH = (TextView)findViewById(R.id.txt_hh);
 		txtMM = (TextView)findViewById(R.id.txt_mm);
 		txtSS = (TextView)findViewById(R.id.txt_ss);
+	}
+	
+	/**
+	 * When the width = -1 it would be that isn't set into xml declaration.
+	 * get the value on view and divided into thre parts
+	 */
+	private void adjustWidthWhenXMLWidthIs0dp(){
+		int width = getWidth() - 10;
+		width = width / 3;
+		LayoutParams lpw;
+		if (height == -1)
+			lpw = new LayoutParams(width, LayoutParams.WRAP_CONTENT);
+		else
+			lpw = new LayoutParams(width, height);
+		txtHH.setLayoutParams(lpw);
+		txtMM.setLayoutParams(lpw);
+		txtSS.setLayoutParams(lpw);
 	}
 }
