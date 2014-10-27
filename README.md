@@ -11,7 +11,7 @@ This README would normally document whatever steps are necessary to get your app
 ### What is this repository for? ###
 
 * Quick summary
-In this library are contained some usefull (at least for me :P) custom compouds for android.
+In this library are contained some usefull (at least for me) custom compouds for android.
 
 * Version 0.01
 In this first version are contained two very basic custom compounds:
