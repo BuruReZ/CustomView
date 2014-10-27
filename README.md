@@ -2,7 +2,7 @@
 CustomView
 ==========
 
-Library contained some usefull (at least for me :P) for manage time in this manner: hh:mm:ss
+Library contained some usefull (at least for me) for manage time in this manner: hh:mm:ss
 =======
 # README #
 
